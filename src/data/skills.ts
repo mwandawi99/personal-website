@@ -6,9 +6,11 @@ export const skills: Skill[] = [
   { name: 'Amazon ECS', category: 'aws', level: 'expert' },
   { name: 'S3', category: 'aws', level: 'expert' },
   { name: 'EC2 / ALB', category: 'aws', level: 'expert' },
+  { name: 'Lambda', category: 'aws', level: 'expert' },
+  {name: 'DynamoDB', category: 'aws', level: 'expert'},
   { name: 'AWS Bedrock', category: 'aws', level: 'proficient' },
   { name: 'IAM', category: 'aws', level: 'proficient' },
-  { name: 'Lambda', category: 'aws', level: 'proficient' },
+  
 
   // Backend & Data
   { name: 'Python', category: 'backend', level: 'expert' },
@@ -20,11 +22,11 @@ export const skills: Skill[] = [
   { name: 'C / C#', category: 'backend', level: 'proficient' },
 
   // DevOps & Infra
+  { name: 'Linux', category: 'devops', level: 'expert' },
+  { name: 'Docker', category: 'devops', level: 'expert' },
   { name: 'Terraform', category: 'devops', level: 'proficient' },
   { name: 'CI/CD', category: 'devops', level: 'proficient' },
-  { name: 'Linux', category: 'devops', level: 'expert' },
-  { name: 'Docker', category: 'devops', level: 'proficient' },
-  { name: 'Google Cloud', category: 'devops', level: 'familiar' },
+  { name: 'Google Cloud', category: 'devops', level: 'proficient' },
 
   // Frontend (learning)
   { name: 'React', category: 'frontend', level: 'familiar' },
