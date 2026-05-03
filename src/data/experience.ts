@@ -1,41 +1,34 @@
 import type { Experience } from '../types';
 
-// TODO: Replace with your actual work history
 export const experiences: Experience[] = [
   {
-    company: 'Your Company Name',
-    role: 'Senior Backend Engineer',
-    startDate: 'Jan 2022',
+    company: 'Stand Together',
+    role: 'Software Engineer',
+    startDate: 'Dec 2023',
     endDate: 'Present',
     description: [
-      'Designed and maintained REST APIs serving millions of requests per day.',
-      'Led architecture decisions for a migration from monolith to microservices.',
-      'Reduced p99 latency by 40% through query optimization and caching strategies.',
-      'Mentored junior engineers and drove adoption of code review best practices.',
+      'Provisioned and managed AWS infrastructure using CloudFormation and Terraform — containerized apps on ECS with EC2, ALB, S3, and SSL — significantly reducing manual deployment effort.',
+      'Designed an AI-powered content tagging pipeline using AWS Bedrock (Claude Sonnet) to analyze 500+ articles and auto-assign semantic tags, resulting in a 28% increase in email CTR and 22% longer average session duration.',
+      'Architected an AWS Bedrock knowledge base enabling semantic search over internal documents, making institutional knowledge queryable via natural language.',
+      'Built and maintained ETL pipelines integrating third-party SaaS tools with Salesforce using Python and JSON, improving data reliability for cross-functional teams.',
+      'Engineered an automated media asset pipeline from S3 to a Digital Asset Management system, streamlining media ingestion and metadata tagging for the marketing team.',
+      'Integrated REST APIs across Finance, IT, and Marketing toolchains; established a BigQuery environment that improved data accuracy and reduced reporting latency.',
+      'Implemented VWO A/B testing integrated with Segment.io to enrich visitor profiles with experiment data, enabling statistically meaningful tests tied to real user traits.',
     ],
-    technologies: ['Go', 'PostgreSQL', 'Redis', 'Kubernetes', 'gRPC'],
+    technologies: ['AWS CloudFormation', 'Amazon ECS', 'AWS Bedrock', 'S3', 'EC2', 'Terraform', 'Python', 'BigQuery', 'Salesforce'],
   },
   {
-    company: 'Previous Company',
-    role: 'Backend Engineer',
-    startDate: 'Jun 2020',
-    endDate: 'Dec 2021',
+    company: 'Stand Together',
+    role: 'IT Engineer',
+    startDate: 'Mar 2021',
+    endDate: 'Dec 2023',
     description: [
-      'Built and shipped core API features used by 50K+ daily active users.',
-      'Implemented event-driven processing pipeline using Kafka.',
-      'Improved test coverage from 30% to 80% across core services.',
+      'Provided technical support to 1,200+ employees; managed full user lifecycle across Azure AD, O365, and Okta.',
+      'Co-developed a Python/PowerShell automation to sync HR user data with IT systems, replacing a manual reconciliation process used across departments.',
+      'Led a company-wide migration of 1,200 employees to Okta SSO, authoring documentation and providing direct support throughout the rollout.',
+      'Built an internal onboarding web app for hiring managers to submit new-hire requests, reducing IT ticket volume and improving request accuracy.',
+      'Managed device fleet (PCs, Macs, iPhones) using Jamf, Airwatch, and Intune.',
     ],
-    technologies: ['Python', 'Django', 'PostgreSQL', 'Kafka', 'Docker'],
-  },
-  {
-    company: 'Internship Company',
-    role: 'Software Engineering Intern',
-    startDate: 'May 2019',
-    endDate: 'Aug 2019',
-    description: [
-      'Contributed to internal tooling that saved the team 10+ hours per week.',
-      'Wrote automated tests and improved CI pipeline reliability.',
-    ],
-    technologies: ['Python', 'Flask', 'MySQL', 'Git'],
+    technologies: ['Python', 'PowerShell', 'Azure AD', 'Okta', 'O365', 'Jamf', 'Intune'],
   },
 ];

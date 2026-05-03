@@ -1,6 +1,6 @@
 export interface Skill {
   name: string;
-  category: 'backend' | 'frontend' | 'devops' | 'tools';
+  category: 'backend' | 'frontend' | 'aws' | 'devops' | 'tools';
   level: 'familiar' | 'proficient' | 'expert';
 }
 
