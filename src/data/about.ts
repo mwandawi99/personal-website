@@ -8,7 +8,7 @@ export const about = {
     "On the side I'm pushing into frontend development — this site is part of that. React and TypeScript are new territory for me, and I'm enjoying the journey.",
   ],
   currentlyLearning: ['React', 'TypeScript', 'Tailwind CSS', 'Frontend architecture'],
-  avatarUrl: '',
+  avatarUrl: 'https://avatars.githubusercontent.com/u/38215725?v=4',
   location: 'Arlington, VA',
   openToWork: false,
 };

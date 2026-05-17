@@ -1,13 +1,24 @@
+import { useState } from 'react';
 import { Code2, ExternalLink, Star } from 'lucide-react';
 import { FadeIn } from '../ui/FadeIn';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
+import { Modal } from '../ui/Modal';
 import { projects } from '../../data/projects';
+import type { Project } from '../../types';
 
 export function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
+
+  const handleProjectClick = (project: Project) => {
+    if (project.detailSummary && project.diagramUrl) {
+      setSelectedProject(project);
+    }
+  };
 
   return (
     <section id="projects" className="py-24 px-4 bg-slate-900/50">
@@ -20,47 +31,58 @@ export function Projects() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
           {featured.map((project, i) => (
             <FadeIn key={project.title} delay={i * 0.1}>
-              <Card hover className="h-full flex flex-col">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Star size={14} className="text-accent" fill="currentColor" />
-                    <span className="text-xs font-mono text-accent uppercase tracking-widest">Featured</span>
+              <div
+                onClick={() => handleProjectClick(project)}
+                className={project.detailSummary && project.diagramUrl ? 'cursor-pointer' : ''}
+              >
+                <Card hover className="h-full flex flex-col">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <Star size={14} className="text-accent" fill="currentColor" />
+                      <span className="text-xs font-mono text-accent uppercase tracking-widest">Featured</span>
+                    </div>
+                    <div className="flex gap-2">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-slate-500 hover:text-accent transition-colors"
+                          aria-label="GitHub"
+                        >
+                          <Code2 size={16} />
+                        </a>
+                      )}
+                      {project.liveUrl && project.liveUrl !== '#' && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-slate-500 hover:text-accent transition-colors"
+                          aria-label="Live site"
+                        >
+                          <ExternalLink size={16} />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-slate-500 hover:text-accent transition-colors"
-                        aria-label="GitHub"
-                      >
-                        <Code2 size={16} />
-                      </a>
-                    )}
-                    {project.liveUrl && project.liveUrl !== '#' && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-slate-500 hover:text-accent transition-colors"
-                        aria-label="Live site"
-                      >
-                        <ExternalLink size={16} />
-                      </a>
-                    )}
+
+                  <h3 className="text-lg font-semibold text-slate-100 mb-2">{project.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed flex-1">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {project.technologies.map((tech) => (
+                      <Badge key={tech} label={tech} variant="ghost" />
+                    ))}
                   </div>
-                </div>
 
-                <h3 className="text-lg font-semibold text-slate-100 mb-2">{project.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed flex-1">{project.description}</p>
-
-                <div className="flex flex-wrap gap-1.5 mt-4">
-                  {project.technologies.map((tech) => (
-                    <Badge key={tech} label={tech} variant="ghost" />
-                  ))}
-                </div>
-              </Card>
+                  {project.detailSummary && project.diagramUrl && (
+                    <p className="mt-3 text-xs text-accent font-medium">Click to see diagram →</p>
+                  )}
+                </Card>
+              </div>
             </FadeIn>
           ))}
         </div>
@@ -76,47 +98,67 @@ export function Projects() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {rest.map((project, i) => (
                 <FadeIn key={project.title} delay={0.35 + i * 0.08}>
-                  <Card hover className="h-full flex flex-col">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-semibold text-slate-200">{project.title}</h3>
-                      <div className="flex gap-2 ml-2 shrink-0">
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-slate-500 hover:text-accent transition-colors"
-                            aria-label="GitHub"
-                          >
-                            <Code2 size={14} />
-                          </a>
-                        )}
-                        {project.liveUrl && project.liveUrl !== '#' && (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-slate-500 hover:text-accent transition-colors"
-                            aria-label="Live site"
-                          >
-                            <ExternalLink size={14} />
-                          </a>
-                        )}
+                  <div
+                    onClick={() => handleProjectClick(project)}
+                    className={project.detailSummary && project.diagramUrl ? 'cursor-pointer' : ''}
+                  >
+                    <Card hover className="h-full flex flex-col">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-semibold text-slate-200">{project.title}</h3>
+                        <div className="flex gap-2 ml-2 shrink-0">
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-slate-500 hover:text-accent transition-colors"
+                              aria-label="GitHub"
+                            >
+                              <Code2 size={14} />
+                            </a>
+                          )}
+                          {project.liveUrl && project.liveUrl !== '#' && (
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-slate-500 hover:text-accent transition-colors"
+                              aria-label="Live site"
+                            >
+                              <ExternalLink size={14} />
+                            </a>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <p className="text-xs text-slate-400 leading-relaxed flex-1">{project.description}</p>
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} label={tech} variant="ghost" />
-                      ))}
-                    </div>
-                  </Card>
+                      <p className="text-xs text-slate-400 leading-relaxed flex-1">{project.description}</p>
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {project.technologies.map((tech) => (
+                          <Badge key={tech} label={tech} variant="ghost" />
+                        ))}
+                      </div>
+                      {project.detailSummary && project.diagramUrl && (
+                        <p className="mt-2 text-xs text-accent font-medium">Click to see diagram →</p>
+                      )}
+                    </Card>
+                  </div>
                 </FadeIn>
               ))}
             </div>
           </>
         )}
       </div>
+
+      {/* Modal for project details */}
+      <Modal
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+        title={selectedProject?.title || ''}
+        summary={selectedProject?.detailSummary || ''}
+        imageSrc={selectedProject?.diagramUrl || ''}
+        imageAlt={selectedProject?.title}
+      />
     </section>
   );
 }

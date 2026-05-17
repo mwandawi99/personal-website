@@ -7,6 +7,9 @@ export const projects: Project[] = [
       'Automated content tagging pipeline using AWS Bedrock (Claude Sonnet) to analyze 500+ website articles and auto-assign semantic tags. Tags drove visitor trait segmentation, resulting in a 28% increase in email CTR and 22% longer average session duration.',
     technologies: ['AWS Bedrock', 'Python', 'S3', 'CloudFormation'],
     featured: true,
+    detailSummary:
+      'A fully automated pipeline that fetches article content from our website, sends it to Claude Sonnet via AWS Bedrock, and stores semantic tags in our database. The tags enable granular visitor segmentation, powering personalized email campaigns.',
+    diagramUrl: 'src/assets/Bedrock_ai_tag_pipeline.png',
   },
   {
     title: 'Containerized App Deployment on ECS',

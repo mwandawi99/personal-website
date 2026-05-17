@@ -20,6 +20,8 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   featured: boolean;
+  detailSummary?: string;
+  diagramUrl?: string;
 }
 
 export interface GitHubRepo {
