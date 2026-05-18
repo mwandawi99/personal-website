@@ -122,7 +122,7 @@ export function WelcomeScreen({ onComplete }: WelcomeScreenProps) {
         </motion.div>
 
         {/* Text animation - Hello with color cycling */}
-        <div className="flex h-12 sm:h-16 items-center justify-center">
+        <div className="flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

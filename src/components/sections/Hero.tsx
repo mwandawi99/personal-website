@@ -24,30 +24,6 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-screen flex-col items-center justify-center px-4 text-center overflow-hidden"
     >
-      {/* Triangle tessellation background */}
-      <svg
-        className="pointer-events-none absolute inset-0 w-full h-full"
-        aria-hidden="true"
-        style={{ opacity: 0.04 }}
-      >
-        <defs>
-          <pattern
-            id="tri-tess"
-            x="0"
-            y="0"
-            width="60"
-            height="103.92"
-            patternUnits="userSpaceOnUse"
-          >
-            {/* Equilateral triangle tessellation — side=60, h=51.96 */}
-            {/* Up triangle */}
-            <polygon points="30,0 0,51.96 60,51.96" fill="none" stroke="#06b6d4" strokeWidth="0.55" />
-            {/* Down triangle */}
-            <polygon points="0,51.96 60,51.96 30,103.92" fill="none" stroke="#06b6d4" strokeWidth="0.55" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#tri-tess)" />
-      </svg>
       {/* Glow */}
       <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-cyan-500/10 blur-3xl" />
 

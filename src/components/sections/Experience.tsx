@@ -22,16 +22,14 @@ export function Experience() {
               return (
                 <FadeIn key={index} delay={index * 0.1} direction={isEven ? 'left' : 'right'}>
                   <div
-                    className={`relative grid md:grid-cols-2 gap-4 ${isEven ? 'md:pr-8' : 'md:pl-8'}`}
+                    className={`relative grid md:grid-cols-2 gap-6 ${isEven ? 'md:pr-8' : ''}`}
                   >
                     {/* Timeline dot */}
                     <div className="absolute left-4 top-5 z-10 flex h-3 w-3 -translate-x-1.5 items-center justify-center rounded-full border-2 border-accent bg-slate-900 md:left-1/2" />
 
-                    {/* Date — left column on even, right on odd (desktop only) */}
+                    {/* Date — right-aligned in left column */}
                     <div
-                      className={`hidden md:flex items-start pt-5 ${
-                        isEven ? 'justify-end pr-8' : 'order-last pl-8'
-                      }`}
+                      className="hidden md:flex items-start pt-5 justify-end pr-8"
                     >
                       <span className="text-sm font-mono text-accent">
                         {exp.startDate} — {exp.endDate}
@@ -41,7 +39,7 @@ export function Experience() {
                     {/* Card */}
                     <div
                       className={`ml-10 md:ml-0 rounded-xl border border-slate-700/50 bg-slate-800/50 p-6 ${
-                        isEven ? 'md:order-first md:ml-0' : 'md:mr-0'
+                        isEven ? 'md:order-first' : 'md:order-last md:ml-4'
                       }`}
                     >
                       {/* Mobile date */}
