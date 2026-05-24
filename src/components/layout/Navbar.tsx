@@ -20,7 +20,7 @@ export function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50 border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 h-16">
         <a href="#hero" className="font-mono text-accent font-semibold tracking-tight text-sm">
-          mw<span className="text-slate-400">.</span>dev
+          mwandawi<span className="text-slate-400">.</span>dev
         </a>
 
         {/* Desktop links */}
