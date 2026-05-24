@@ -28,15 +28,18 @@ jobs:
       
       - name: Deploy to EC2
         env:
-          EC2_HOST: ${{ vars.EC2_HOST }}
-          EC2_USER: ec2-user
+            EC2_HOST: ${{ vars.EC2_HOST }}
+            EC2_USER: ec2-user
         run: |
             echo "Testing SSH connection..."
-            ssh -v $EC2_USER@$EC2_HOST 'echo "SSH works!"' || exit 1
+            ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -v $EC2_USER@$EC2_HOST 'echo "SSH works!"' || exit 1
             
             echo "Copying files..."
-            scp -r dist/* $EC2_USER@$EC2_HOST:/tmp/build || exit 1
+            scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r dist/* $EC2_USER@$EC2_HOST:/tmp/build || exit 1
             
             echo "Deploying..."
-            ssh $EC2_USER@$EC2_HOST 'sudo cp -r /tmp/build/* /usr/share/nginx/html/ && sudo chown -R nginx:nginx /usr/share/nginx/html && sudo systemctl reload nginx' || exit 1
+            ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $EC2_USER@$EC2_HOST 'sudo cp -r /tmp/build/* /usr/share/nginx/html/ && sudo chown -R nginx:nginx /usr/share/nginx/html && sudo systemctl reload nginx' || exit 1
+            
+            echo "✅ Deploy complete!"
+
             
