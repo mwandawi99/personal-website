@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
       - name: Install dependencies
         run: npm install
       
@@ -19,14 +24,12 @@ jobs:
       - name: Deploy to EC2
         env:
           SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
-          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_HOST: ${{ vars.EC2_HOST }}
           EC2_USER: ec2-user
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
-          
           scp -i ~/.ssh/deploy_key -r dist/* $EC2_USER@$EC2_HOST:/tmp/build
-          ssh -i ~/.ssh/deploy_key $EC2_USER@$EC2_HOST \
-            "sudo mv /tmp/build/* /usr/share/nginx/html/ && sudo systemctl reload nginx"
+          ssh -i ~/.ssh/deploy_key $EC2_USER@$EC2_HOST 'sudo cp -r /tmp/build/* /usr/share/nginx/html/ && sudo systemctl reload nginx'
